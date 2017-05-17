@@ -1,4 +1,0 @@
-# Only save *.sh files
-!*.sh
-!README.md
-!.gitignore
