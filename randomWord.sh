@@ -11,3 +11,7 @@ ln=$RANDOM
 echo $ln
 cat $wordFile | head -$ln  | tail -1
 
+# Using a number as the first argument 
+# eg. ./randomWord.sh 5
+cat $wordFile | head -$1 | tail -1
+
