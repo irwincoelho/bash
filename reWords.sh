@@ -13,6 +13,6 @@ len=$2
 # $2 holds the number of letters after the first letter
 # eg. ./reWords.sh A 2 will print all 3 letter words starting with A
 echo Usage: './reWords.sh <first letter> <number of characters to follow>'
-egrep "^$1.{$2}$" $file
+egrep "$1.{$2}$" $file
 
 
