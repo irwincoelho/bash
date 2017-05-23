@@ -9,12 +9,50 @@
 # 1. How to identify movie files
 # For now any files with extension mp4, avi, mkv, wmv
 
+# Test if there $1 holds the dir. If no, act on current dir
+if [ $# -ne 0 ]
+then
+	cd $1
+fi
+
+# Create 2 arrays with the video and srt files
 i=0
-cd ~/Downloads
+j=0
+
 while read line
 do
-  array[ $i ]=$line
-  (( i++ ))
+  fn=$(basename "$line")
+  ext="${fn##*.}"
+  if [ $ext = "srt" ]
+  then
+	srt[ $i ]=$line
+	(( i++ ))
+  elif [[ $ext =~ [(mp4|avi|mkv)] ]]
+  then
+	vid[ $j ]=$line
+	(( j++ ))
+  fi
 done < <(ls)
 
-echo ${array[1]}
+# The loop below prints out the contents of the vid and srt arrays
+# Not really needed. Keeping it for testing purposes
+#for ((x=0;x<${#vid[@]};x++));
+#do
+#	echo ${vid[$x]}
+#	echo ${srt[$x]}
+#done
+
+# The only matches between the vid and srt files are their
+# names, season and episode number
+# Write a regular expression to identify the matching srt
+# Then copy the filename of the vid without the extension to the srt
+
+for ((i=0;i<${#vid[@]};i++));
+do
+	vidTest=${vid[$i]}
+	for ((j=0;j<${#vid[@]};j++));
+	do
+		
+	done
+		
+done
