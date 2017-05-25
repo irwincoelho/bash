@@ -50,9 +50,18 @@ done < <(ls)
 for ((i=0;i<${#vid[@]};i++));
 do
 	vidTest=${vid[$i]}
+	[[ "${vid[$i]}" =~ .*S?([0-9]{2,})[xE]([0-9]+).* ]]
+	vidSeason=${BASH_REMATCH[1]}
+	vidEpisode=${BASH_REMATCH[2]}
 	for ((j=0;j<${#vid[@]};j++));
 	do
-		
+		[[ "${srt[$j]}" =~ .*S?([0-9]{2,})[xE]([0-9]+).* ]]
+		srtSeason=${BASH_REMATCH[1]}
+		srtEpisode=${BASH_REMATCH[2]}
+		if [ $vidEpisode=$srtEpisode ]
+		then
+			echo matches
+		fi
 	done
 		
 done
